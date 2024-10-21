@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Aluno - Fase 2</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>Keyla da Silva Andrade</h1>
+
+<!-- Tabela para organizar o layout -->
+<table>
+    <tr>
+        <td rowspan="5">
+            <!-- Imagem principal que pode ser alternada -->
+            <img id="profileImage" src="imagens/image1.jpeg" alt="Foto de Perfil" width="250" height="300">
+            <br><br>
+            <button onclick="changeImage()">Trocar Imagem</button> <!-- Botão para alternar imagem -->
+        </td>
+        <td><h4>RA:</h4></td>
+        <td><p>323132029</p></td>
+    </tr>
+    <tr>
+        <td><h4>Curso:</h4></td>
+        <td><p>Sistemas de Informação - 4º Período</p></td>
+    </tr>
+    <tr>
+        <td><h4>E-mail:</h4></td>
+        <td><p>keyla.andrade49@gmail.com</p></td>
+    </tr>
+    <tr>
+        <td><h4>Endereço Completo:</h4></td>
+        <td><p>Rua Ceará, 15, São José da Lapa/MG, Bairro Cachoeira, CEP 33350-000</p></td>
+    </tr>
+    <tr>
+        <td><h4>Link do Linkedin:</h4></td>
+        <td><a href="https://www.linkedin.com/in/keylaandrade/">Meu Linkedin</a></td>
+    </tr>
+</table>
+
+<h4>UCs já cursadas:</h4>
+<ul>
+    <li>Modelagem de Software</li>
+    <li>Programação de Soluções Computacionais</li>
+    <li>Vida e Carreira</li>
+    <li>Sistemas Computacionais e Segurança</li>
+    <li>Ambientes Computacionais e Conectividade</li>
+    <li>Modelos, Métodos e Técnicas da Engenharia de Software</li>
+    <li>Gestão e Qualidade de Software</li>
+</ul>
+
+<h4>Perfil Pessoal:</h4>
+<p>Procuro manter um estilo de vida equilibrado, valorizando tanto o desenvolvimento profissional quanto os momentos de lazer. Me interesso por esportes, especialmente capoeira, atividade que pratico regularmente e que me ajuda a manter a forma física e mental. Além disso, gosto de assistir a filmes e séries e viajar com minha família. No meu tempo livre também gosto de participar de atividades sociais com amigos, como jogar ping pong, sinuca, totó etc.</p>
+
+<h4>Perfil Profissional/Acadêmico:</h4>
+<p>Sou estudante de Sistemas de Informação. Atualmente faço estágio em Operações no Time de Implantação. Já fiz estágio em auxiliar administrativo também e atualmente busco um estágio na área de Qualidade de Software.</p>
+
+<!-- JavaScript para alternar as imagens -->
+<script>
+    let currentImageIndex = 0;
+    const images = ["imagens/image1.jpeg", "imagens/image2.jpeg"];
+    const imageElement = document.getElementById("profileImage");
+
+    function changeImage() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        imageElement.src = images[currentImageIndex];
+    }
+</script>
+
+</body>
+</html>
