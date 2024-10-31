@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Aluno - Keyla da Silva Andrade</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>Keyla da Silva Andrade</h1>
+
+<!-- Tabela para organizar o layout -->
+<table>
+    <tr>
+        <td rowspan="6">
+            <img id="profileImage" src="imagens/image1.jpeg" alt="Foto de Perfil" width="250" height="300">
+            <br><br>
+            <button onclick="changeImage()">Trocar Imagem</button>
+        </td>
+        <td><h4>RA:</h4></td>
+        <td><p>323132029</p></td>
+    </tr>
+    <tr>
+        <td><h4>Curso:</h4></td>
+        <td><p>Sistemas de Informação - 4º Período</p></td>
+    </tr>
+    <tr>
+        <td><h4>E-mail:</h4></td>
+        <td>
+            <input type="email" id="email" onblur="validateEmail()">
+            <span id="emailError" style="color: red; display: none;">Email inválido</span>
+        </td>
+    </tr>
+    <tr>
+        <td><h4>CPF:</h4></td>
+        <td>
+            <input type="text" id="cpf" onblur="validateCPF()" placeholder="Digite o CPF">
+            <span id="cpfError" style="color: red; display: none;">CPF inválido</span>
+        </td>
+    </tr>
+    <tr>
+        <td><h4>Endereço Completo:</h4></td>
+        <td><p>Rua Ceará, 15, São José da Lapa/MG, Bairro Cachoeira, CEP 33350-000</p></td>
+    </tr>
+    <tr>
+        <td><h4>Link do Linkedin:</h4></td>
+        <td><a href="https://www.linkedin.com/in/keylaandrade/">Meu Linkedin</a></td>
+    </tr>
+</table>
+
+<h4>UCs já cursadas:</h4>
+<button onclick="addNewUC()">Adicionar Nova UC</button>
+<table id="ucsTable">
+    <tr>
+        <th>UC</th>
+        <th>Ações</th>
+    </tr>
+    <tr>
+        <td>Modelagem de Software</td>
+        <td>
+            <button onclick="moveUp(this)">&#9650;</button>
+            <button onclick="moveDown(this)">&#9660;</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Programação de Soluções Computacionais</td>
+        <td>
+            <button onclick="moveUp(this)">&#9650;</button>
+            <button onclick="moveDown(this)">&#9660;</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Vida e Carreira</td>
+        <td>
+            <button onclick="moveUp(this)">&#9650;</button>
+            <button onclick="moveDown(this)">&#9660;</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Sistemas Computacionais e Segurança</td>
+        <td>
+            <button onclick="moveUp(this)">&#9650;</button>
+            <button onclick="moveDown(this)">&#9660;</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Ambientes Computacionais e Conectividade</td>
+        <td>
+            <button onclick="moveUp(this)">&#9650;</button>
+            <button onclick="moveDown(this)">&#9660;</button>
+        </td>
+    </tr>
+</table>
+
+<h4>Perfil Pessoal:</h4>
+<p id="perfilPessoal">Procuro manter um estilo de vida equilibrado, valorizando tanto o desenvolvimento profissional quanto os momentos de lazer. Me interesso por esportes, especialmente capoeira, atividade que pratico regularmente e que me ajuda a manter a forma física e mental. Além disso, gosto de assistir a filmes e séries e viajar com minha família. No meu tempo livre também gosto de participar de atividades sociais com amigos, como jogar ping pong, sinuca, totó etc.</p>
+<input type="text" id="novoPerfilPessoal" placeholder="Adicionar nova informação de perfil pessoal">
+<button onclick="addPerfilPessoal()">Adicionar</button>
+
+<h4>Perfil Profissional/Acadêmico:</h4>
+<p>Sou estudante de Sistemas de Informação. Atualmente faço estágio em Operações no Time de Implantação. Já fiz estágio em auxiliar administrativo também e atualmente busco um estágio na área de Qualidade de Software.</p>
+
+<!-- JavaScript para alternar imagens, adicionar UCs, validar CPF e e-mail -->
+<script>
+    // Alternar imagens
+    let currentImageIndex = 0;
+    const images = ["imagens/image1.jpeg", "imagens/image2.jpeg"];
+    const imageElement = document.getElementById("profileImage");
+
+    function changeImage() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        imageElement.src = images[currentImageIndex];
+    }
+
+    // Adicionar nova UC
+    function addNewUC() {
+        const newUC = prompt("Digite o nome da nova UC:");
+        if (newUC) {
+            const table = document.getElementById("ucsTable");
+            const row = table.insertRow();
+            const cellUC = row.insertCell(0);
+            const cellActions = row.insertCell(1);
+
+            cellUC.textContent = newUC;
+            cellActions.innerHTML = `
+                <button onclick="moveUp(this)">&#9650;</button>
+                <button onclick="moveDown(this)">&#9660;</button>
+            `;
+        }
+    }
+
+    // Mover UC para cima e para baixo
+    function moveUp(element) {
+        const row = element.parentNode.parentNode;
+        const prevRow = row.previousElementSibling;
+        if (prevRow && prevRow.rowIndex > 0) {
+            row.parentNode.insertBefore(row, prevRow);
+        }
+    }
+
+    function moveDown(element) {
+        const row = element.parentNode.parentNode;
+        const nextRow = row.nextElementSibling;
+        if (nextRow) {
+            row.parentNode.insertBefore(nextRow, row);
+        }
+    }
+
+    // Adicionar nova informação ao perfil pessoal
+    function addPerfilPessoal() {
+        const novoPerfil = document.getElementById("novoPerfilPessoal").value;
+        if (novoPerfil) {
+            const perfilPessoal = document.getElementById("perfilPessoal");
+            perfilPessoal.innerHTML += `<br>${novoPerfil}`;
+            document.getElementById("novoPerfilPessoal").value = "";
+        }
+    }
+
+    // Validação do CPF
+    function validateCPF() {
+        const cpf = document.getElementById("cpf").value;
+        const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+        const cpfError = document.getElementById("cpfError");
+
+        if (cpfRegex.test(cpf)) {
+            cpfError.style.display = "none";
+        } else {
+            cpfError.style.display = "inline";
+        }
+    }
+
+    // Validação de e-mail
+    function validateEmail() {
+        const email = document.getElementById("email").value;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailError = document.getElementById("emailError");
+
+        if (emailRegex.test(email)) {
+            emailError.style.display = "none";
+        } else {
+            emailError.style.display = "inline";
+        }
+    }
+</script>
+
+</body>
+</html>
